@@ -20,7 +20,7 @@ class ReflectDesensitization(strategy: DesensitizeStrategy) : Desensitization(st
         }.forEach {
             it.desensitize(strategy)
         }
-        return t;
+        return t
 
     }
 }

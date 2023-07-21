@@ -17,6 +17,6 @@ annotation class Desensitize(
 
     val type:DesensitizeType = DesensitizeType.OTHER,
 
-    val handle: KClass<out DesensitizeHandler<Any>> = DesensitizeHandler.Stub::class
+    val handle: KClass<out DesensitizeHandler> = DesensitizeHandler.Stub::class
 
 )

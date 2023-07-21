@@ -1,6 +1,7 @@
 plugins {
     id 'java-library'
     id 'org.jetbrains.kotlin.jvm'
+    id "com.vanniktech.maven.publish"
 }
 
 java {
@@ -8,6 +9,29 @@ java {
     targetCompatibility = JavaVersion.VERSION_1_8
 }
 
+
+compileKotlin {
+    kotlinOptions.jvmTarget = JavaVersion.VERSION_1_8
+}
+
 dependencies {
     implementation 'cn.hutool:hutool-core:5.8.20'
+}
+
+
+publishing {
+    repositories {
+        maven {
+            def releasesRepoUrl = "http://114.116.245.170:9091/repository/maven-releases/"
+            def snapshotsRepoUrl = "http://114.116.245.170:9091/repository/maven-snapshots/"
+            url = snapshotsRepoUrl
+            //version.endsWith('SNAPSHOT') ? snapshotsRepoUrl : releasesRepoUrl
+            allowInsecureProtocol(true)
+            credentials {
+                it.setUsername("developer")
+                it.setPassword("developer")
+            }
+//            authentication(userName: "developer", password: "developer")
+        }
+    }
 }

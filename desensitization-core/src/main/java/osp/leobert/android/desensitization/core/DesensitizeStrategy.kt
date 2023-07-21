@@ -14,18 +14,18 @@ import java.util.EnumMap
  * Created by Leobert on 2023/7/17.
  */
 open class DesensitizeStrategy(
-    private val handlers: Map<DesensitizeType, DesensitizeHandler<Any>> =
+    private val handlers: Map<DesensitizeType, DesensitizeHandler> =
         EnumMap(DesensitizeType::class.java),
-    private val customHandlerProvider: (Class<out DesensitizeHandler<Any>>) -> DesensitizeHandler<Any>?
+    private val customHandlerProvider: (Class<out DesensitizeHandler>) -> DesensitizeHandler?
 ) {
 
-    private val nullSafe: DesensitizeHandler<Any> = DesensitizeHandler.Stub()
+    private val nullSafe: DesensitizeHandler = DesensitizeHandler.Stub()
 
-    fun getHandler(desensitizeType: DesensitizeType): DesensitizeHandler<Any> {
+    fun getHandler(desensitizeType: DesensitizeType): DesensitizeHandler {
         return handlers[desensitizeType] ?: nullSafe
     }
 
-    fun getHandler(desensitize: Desensitize): DesensitizeHandler<Any> {
+    fun getHandler(desensitize: Desensitize): DesensitizeHandler {
         return if (desensitize.handle == DesensitizeHandler.Stub::class.java) {
             getHandler(desensitize.type)
         } else {
@@ -33,7 +33,7 @@ open class DesensitizeStrategy(
         }
     }
 
-    fun getHandler(field: Field): DesensitizeHandler<Any> {
+    fun getHandler(field: Field): DesensitizeHandler {
         return if (AnnotationUtil.hasAnnotation(field, Desensitize::class.java)) {
             getHandler(field.getAnnotation(Desensitize::class.java))
         } else {
