@@ -6,7 +6,7 @@ import osp.leobert.android.desensitization.core.notation.Desensitize
 
 /**
  * Classname: ReflectDesensitization </p>
- * Description: TODO </p>
+ * Description: a build-in entrance of desensitization, use reflect to access desensitize handler </p>
  * Created by Leobert on 2023/7/17.
  */
 class ReflectDesensitization(strategy: DesensitizeStrategy) : Desensitization(strategy) {

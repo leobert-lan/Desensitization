@@ -21,11 +21,11 @@ open class DesensitizeStrategy(
 
     private val nullSafe: DesensitizeHandler = DesensitizeHandler.Stub()
 
-    fun getHandler(desensitizeType: DesensitizeType): DesensitizeHandler {
+    open fun getHandler(desensitizeType: DesensitizeType): DesensitizeHandler {
         return handlers[desensitizeType] ?: nullSafe
     }
 
-    fun getHandler(desensitize: Desensitize): DesensitizeHandler {
+    open fun getHandler(desensitize: Desensitize): DesensitizeHandler {
         return if (desensitize.handle == DesensitizeHandler.Stub::class.java) {
             getHandler(desensitize.type)
         } else {
@@ -33,7 +33,7 @@ open class DesensitizeStrategy(
         }
     }
 
-    fun getHandler(field: Field): DesensitizeHandler {
+    open fun getHandler(field: Field): DesensitizeHandler {
         return if (AnnotationUtil.hasAnnotation(field, Desensitize::class.java)) {
             getHandler(field.getAnnotation(Desensitize::class.java))
         } else {

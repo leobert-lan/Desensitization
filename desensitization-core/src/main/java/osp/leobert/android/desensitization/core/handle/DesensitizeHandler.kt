@@ -4,7 +4,10 @@ import osp.leobert.android.desensitization.core.consts.DesensitizeType
 
 /**
  * Classname: DesensitizeHandler </p>
- * Description: TODO </p>
+ * Description: interface for desensitize sth. override [support] method to deal with the target whether can be desensitized by this.
+ *
+ * override [desensitize] to fill custom desensitize logic
+ * </p>
  * Created by Leobert on 2023/7/17.
  */
 interface DesensitizeHandler {
