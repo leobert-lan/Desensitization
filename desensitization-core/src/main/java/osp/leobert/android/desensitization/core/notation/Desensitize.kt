@@ -13,6 +13,8 @@ import kotlin.reflect.KClass
  *
  * [handle] : the specified handle Type,
  */
+@Retention(AnnotationRetention.RUNTIME)
+@Target(AnnotationTarget.FIELD)
 annotation class Desensitize(
 
     val type:DesensitizeType = DesensitizeType.OTHER,

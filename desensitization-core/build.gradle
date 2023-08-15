@@ -15,7 +15,6 @@ compileKotlin {
 }
 
 dependencies {
-    implementation 'cn.hutool:hutool-core:5.8.20'
 }
 
 

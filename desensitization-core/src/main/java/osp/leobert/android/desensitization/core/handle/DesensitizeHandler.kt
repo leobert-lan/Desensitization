@@ -19,10 +19,10 @@ interface DesensitizeHandler {
         return supportType.isAssignableFrom(target.javaClass)
     }
 
-    fun desensitize(target: Any): Any
+    fun desensitize(target: Any?): Any?
 
     class Stub() :DesensitizeHandler {
-        override fun desensitize(target: Any): Any {
+        override fun desensitize(target: Any?): Any? {
             return target
         }
 

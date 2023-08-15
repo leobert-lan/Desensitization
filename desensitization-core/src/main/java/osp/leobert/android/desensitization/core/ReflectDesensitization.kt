@@ -1,7 +1,5 @@
 package osp.leobert.android.desensitization.core
 
-import cn.hutool.core.annotation.AnnotationUtil
-import cn.hutool.core.util.ReflectUtil
 import osp.leobert.android.desensitization.core.notation.Desensitize
 
 /**
@@ -13,8 +11,8 @@ class ReflectDesensitization(strategy: DesensitizeStrategy) : Desensitization(st
 
     override fun <T : Any> desensitize(clz: Class<in T>, t: T): T {
 
-        ReflectUtil.getFields(clz).filter {
-            AnnotationUtil.hasAnnotation(it, Desensitize::class.java)
+        Utils.getFields(clz).filter {
+            it.getAnnotation(Desensitize::class.java) != null
         }.map {
             DesensitizeField(t, it)
         }.forEach {
